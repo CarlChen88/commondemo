@@ -1,0 +1,28 @@
+#服务器端配置
+server:
+  servlet:
+    context-path: /demo
+  port: 8081
+#数据库连接池配置
+master:
+  datasource:
+    config:
+      url: jdbc:mysql://localhost:3306/my_database_01?useUnicode=true&characterEncoding=utf8&autoReconnect=false&useSSL=false&allowMultiQueries=true
+      username: root
+      password: cx19881210
+      driverClassName: com.mysql.jdbc.Driver
+      initialSize: 1
+      minIdle: 1
+      maxIdle: 10
+      maxActive: 10
+      maxWait: 10000
+      validationQuery: select 1 from dual
+      testOnBorrow: true
+      testOnReturn: false
+      testWhileIdle: true
+spring:
+  application:
+    name: qqqq
+mybatis:
+  type-handlers-package: com.cx.demo1
+

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cx.dao.TestDao">
+
+    <resultMap id="enumResult" type="com.cx.demo1.UserVO">
+        <result column="id" property="id" />
+        <result column="code" property="code" />
+        <result column="name" property="name" />
+        <result column="user_type" property="gender" typeHandler="com.cx.demo1.NormalHandler" />
+    </resultMap>
+
+    <select id="getList" resultType="java.util.Map">
+        select code,`name` from t_test
+    </select>
+
+    <select id="getEnumVO" resultMap="enumResult">
+        select code,`name`, user_type from test_user limit 1
+    </select>
+
+    <select id="saveEnumVO" parameterType = "com.cx.model.EnumTestVO">
+      insert into test_user(code,name,user_type) values(#{code},#{name},#{userType, typeHandler=com.cx.model.DbEnumTypeHandler})
+    </select>
+
+    <select id="getUser" resultMap="enumResult">
+        select code,`name` ,user_type from test_user limit 1
+    </select>
+
+</mapper>
